@@ -1,0 +1,63 @@
+#Virtual environments
+.venv/
+
+# Configuration files
+config.toml
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# =========================
+# Operating System Files
+# =========================
+
+# OSX
+# =========================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+Data/DurhamCrime2017.csv
+Data/RaleighIncidents2014.csv
+Data/WakeCountyTransactionsFY2016.xlsx
+.ipynb_checkpoints/Demo 07 - Benford-checkpoint.ipynb
+.ipynb_checkpoints/Demo 06 - Round Numbers-checkpoint.ipynb
+.ipynb_checkpoints/Demo 05 - Cohort Analysis-checkpoint.ipynb
+.ipynb_checkpoints/Demo 04 - Cohort Duplicates and Cardinality-checkpoint.ipynb
+.ipynb_checkpoints/Demo 03 - Regression Analysis-checkpoint.ipynb
+.ipynb_checkpoints/Demo 02 - Gaps-checkpoint.ipynb
+.ipynb_checkpoints/Demo 01 - Basic Analysis-checkpoint.ipynb

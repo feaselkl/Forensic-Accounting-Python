@@ -1,0 +1,524 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Catallaxy Services | Applying Forensic Accounting Techniques Using SQL and Python</title>
+
+		<link rel="stylesheet" href="../reveal.js/dist/reset.css">
+		<link rel="stylesheet" href="../reveal.js/dist/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/dist/theme/black.css" id="theme">
+		<link rel="stylesheet" href="../WebsiteAssets/mods.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h2>Applying Forensic Accounting Techniques</h2>
+					<h2>Using SQL And Python</h2>
+					
+					<a href="https://www.catallaxyservices.com">Kevin Feasel</a> (<a href="https://twitter.com/feaselkl">@feaselkl</a>)<br />
+					<a href="https://csmore.info/on/forensicpython">https://csmore.info/on/forensicpython</a>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Who Am I?  What Am I Doing Here?</h3>
+					<div class="container">
+						<div class="col">
+							<table class="whoami">
+								<tr>
+									<td><a href="https://csmore.info"><img src="../WebsiteAssets/Logo.png" height="100" /></a></td>
+									<td nowrap><a href="https://csmore.info">Catallaxy Services</a></td>
+								</tr>
+								<tr>
+									<td><a href="https://curatedsql.com"><img src="../WebsiteAssets/CuratedSQLLogo.png" height="100" /></a></td>
+									<td nowrap><a href="https://curatedsql.com">Curated SQL</a></td>
+								</tr>
+								<tr>
+									<td><a href="https://www.amazon.com/Finding-Ghosts-Your-Data-Techniques/dp/1484288696"><img src="../WebsiteAssets/Finding-Ghosts.jpg" height="120" /></a></td>
+									<td nowrap><a href="https://www.amazon.com/Finding-Ghosts-Your-Data-Techniques/dp/1484288696">Finding Ghosts in Your Data</a></td>
+								</tr>
+							</table>
+						</div>
+						<div class="col">
+							<a href="http://www.twitter.com/feaselkl"><img src="../WebsiteAssets/HeadShot.jpg" height="358" width="315" /></a>
+							<br />
+							<a href="http://www.twitter.com/feaselkl">@feaselkl</a>
+						</div>					
+					</div>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>A Case Study</h3>
+					
+					<div class="container">
+						<div class="col">
+							<img src="presentation/assets/image/SBIInvestigation.png" height="550" />
+						</div>
+						<div class="col">
+							<p>Transportation fraud</p>
+							<p>Wake County, North Carolina</p>
+						</div>					
+					</div>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>A Case Study</h3>
+					
+					<div class="container">
+						<div class="col">
+							<p>An auto parts company, working in conjunction with several county employees, defrauded Wake County of at least &#36;5 million over a multi-year period.</p>
+						</div>
+						<div class="col">
+							<img src="presentation/assets/image/Appeal.png" height="550" />
+						</div>					
+					</div>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>A Case Study</h3>
+					
+					<div class="container">
+						<div class="col">
+							<p>In the end, several participants pled guilty and served jail time.</p>
+						</div>
+						<div class="col">
+							<img src="presentation/assets/image/3PleadGuilty.png" />
+						</div>					
+					</div>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>A Case Study</h3>
+					
+					<div class="container">
+						<div class="col">
+							<img src="presentation/assets/image/Fine.png" height="550" />
+						</div>
+						<div class="col">
+							<p>Wake County was able to claw back 5 million dollars and Barnes Motor and Parts paid back 3 million dollars, including a &#36;2.5 million criminal fine.</p>
+						</div>					
+					</div>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/library.jpg" data-background-opacity="0.2">
+					<h3>A Case Study --- A Quick Story</h3>
+					
+					<p>As we go over techniques forensic accountants use to find potentially fraudulent data, we will return to this case several times.</p>
+
+					<p>We will cover some of the techniques forensic accounts used to break this case, as well as gain an understanding of why it took so long.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/motivation.jpg" data-background-opacity="0.2">
+					<h3>Motivation</h3>
+					
+					<p>Most of us don't spend time hunting down fraudsters using our data. But the practices and principles these forensic accountants use can still be valuable for us.</p>
+
+					<p>Ultimately, these techniques come down to knowing your data.  "Know your data" is something you hear in a lot of talks, and this talk will go into great detail on what that actually means.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li class="active">Know Your Data</li>
+						<li>Basic Analysis</li>
+						<li>Cohort Analysis</li>
+						<li>Time Series Analysis</li>
+						<li>Numeral Analysis</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Know Your Data</h3>
+					
+					<p>In today's talk, we will use a simplified version of the Wake County fraud case.  <strong>This is all fake data.</strong></p>
+
+					<p>Fake data lets us understand the key principles without getting lost in hundreds of tables.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<img src="presentation/assets/image/forensicdatabasediagram.png" />
+				</section>
+				
+				<section data-background-image="presentation/assets/background/audit.jpg" data-background-opacity="0.2">
+					<h3>Know Your Data -- The Scenario</h3>
+					
+					<p>You work for a company which specializes in external audits of government agencies.  Your latest assignment is to review a county transportation agency.</p>
+
+					<p>All we have going in is a data model and a login with read-only access.  Let’s see where we can go.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li>Know Your Data</li>
+						<li class="active">Basic Analysis</li>
+						<li>Cohort Analysis</li>
+						<li>Time Series Analysis</li>
+						<li>Numeral Analysis</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/folders.jpg" data-background-opacity="0.2">
+					<h3>Basic Analysis</h3>
+					
+					<p>Our basic analysis will focus on a few important areas:</p>
+
+					<ul>
+						<li>Summary Analysis</li>
+						<li>Growth Analysis</li>
+						<li>Gaps in Data</li>
+						<li>Regression Analysis</li>
+					</ul>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/aerial-water.jpg" data-background-opacity="0.2">
+					<h3>Summary Analysis</h3>
+					
+					<p>Summary analysis looks at things like row counts, data types, and keys.</p>
+
+					<p>In SQL Server, here is some of what I do to learn about a new database.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Step 1:  Review Large Tables</h3>
+					
+					<img src="presentation/assets/image/ReviewLargestTables.png" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Step 2:  Review a Large Table</h3>
+					
+					<div class="container">
+						<div class="col">
+							<img src="presentation/assets/image/LineItemMetadata.png" />
+						</div>
+						<div class="col">
+							<img src="presentation/assets/image/LineItemTopRows.png" />
+						</div>					
+					</div>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Step 3:  Recursively Review FKs</h3>
+					
+					<div class="container">
+						<div class="col">
+							<img src="presentation/assets/image/Keys1.png" />
+						</div>
+						<div class="col">
+							<img src="presentation/assets/image/Keys2.png" />
+						</div>					
+					</div>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Step 4:  Rinse and Repeat</h3>
+					
+					<img src="presentation/assets/image/ReportResults.png" />
+					
+					<p>We’ve yet to see <code>Calendar</code>, so that might be our next stop.  Or maybe <code>VendorExpenseCategory</code>.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Summary Analysis</h3>
+					
+					<p>Creating a database diagram is also helpful here if you don’t have one.</p>
+					
+					<img src="presentation/assets/image/forensicdatabasediagram.png" height="483" width="904" />
+				</section>
+				
+				<section data-background-image="presentation/assets/background/growth.jpg" data-background-opacity="0.2">
+					<h3>Growth Analysis</h3>
+					
+					<p>Growth analysis looks at changes in ratios over time. Our goal is to look for major changes which look to be far outside the norm.</p>
+
+					<p>Typically, we will perform growth analysis against important additive measures: company growth, revenue, cost, number of customers, etc.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/demo.jpg" data-background-opacity="0.2">
+					<h3>Demo Time</h3>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/sinkhole.jpg" data-background-opacity="0.2">
+					<h3>Gap Analysis</h3>
+					
+					<p>Sometimes, it's the <strong>lack</strong> of a value which is interesting. We want to look for sequences which should be complete but aren't--examples include receipts, purchase orders, check numbers, invoice numbers, etc.</p>
+
+					<p>There are several T-SQL constructs which can help us find missing values, including the Gaps and Islands solutions and using a tally table.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/demo.jpg" data-background-opacity="0.2">
+					<h3>Demo Time</h3>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/surfer-crash.jpg" data-background-opacity="0.2">
+					<h3>Gap Analysis</h3>
+					
+					<p><strong>Warning:</strong> if you generate invoice numbers (for example) using a SQL Server identity integer, gaps may occur when transactions get rolled back. It may be better to use a surrogate key for storage but generate an invoice number only after the new transaction saves successfully.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/notebook.jpg" data-background-opacity="0.2">
+					<h3>Regression Analysis</h3>
+					
+					<p>What we have:</p>
+					
+					<ul>
+						<li>A dependent variable:  the thing whose behavior we want to explain.</li>
+						<li>Independent variables:  the things whose behavior explains the dependent variable.</li>
+						<li>Known data points relating our independent variable(s) to our dependent variable.</li>
+					</ul>
+					
+					<p>Regression analysis can get complicated, but if you know what the data "ought" to look like, regression can help you confirm or disprove your conjecture.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<img src="presentation/assets/image/LinearRegression.png" height="550" />
+				</section>
+				
+				<section data-background-image="presentation/assets/background/demo.jpg" data-background-opacity="0.2">
+					<h3>Demo Time</h3>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li>Know Your Data</li>
+						<li>Basic Analysis</li>
+						<li class="active">Cohort Analysis</li>
+						<li>Time Series Analysis</li>
+						<li>Numeral Analysis</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/slices.jpg" data-background-opacity="0.2">
+					<h3>Cohort Analysis</h3>
+					
+					<p>Looking at top-level aggregates or a single slice (customer, vendor, group) might help us find problems, and looking at a broad-based comparison of these slices may give us a clearer picture.</p>
+
+					<p>A data set can be sliced many ways, so there could be a large number of relevant cohorts.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/cardinal.jpg" data-background-opacity="0.2">
+					<h3>Duplicates and Cardinality</h3>
+					
+					<p>Look for duplicates along two angles.</p>
+
+					<p>First, one-time codes or unenforced unique keys can show where the same data shows up multiple times.</p>
+
+					<p>Second, things which are very close but not quite the same, like typos (e.g., “Fundation” instead of “Foundation”).</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/engineering.jpg" data-background-opacity="0.2">
+					<h3>Duplicates and Cardinality</h3>
+					
+					<p>There are several measures for the similarity of two text phrases, including Levenshtein distance, soundex, and even pattern matching using LIKE. Depending upon the level of sophistication necessary, getting the similarity of two items based on text descriptors can take quite a bit of effort!</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/duplicates.jpg" data-background-opacity="0.2">
+					<h3>Duplicates and Cardinality</h3>
+					
+					<p>Tying back to the Wake County fraud case, there were 24 separate days in which the auto supplier submitted <strong>50+</strong> invoices under $2500 to the county. Here, the duplication is in vendor and date and is well outside the expected behavior for a vendor on the up-and-up.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/demo.jpg" data-background-opacity="0.2">
+					<h3>Demo Time</h3>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Difference Analysis</h3>
+					
+					<p>When comparing different members of a cohort, remember that there are two types of difference: differences between groups and differences within a group.</p>
+
+					<p>Differences between groups may indicate suspicious behavior if one member of the group acts well outside the norm, such as in the number of invoices submitted per day.</p>
+
+					<p>Looking at differences within a group can help explain anomalous aggregate behavior.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Box Plots</h3>
+					
+					<p>Box plots are valuable for comparing cohorts.</p>
+					
+					<img src="presentation/assets/image/BoxPlot.png" height="481" width="714" />
+				</section>
+				
+				<section data-background-image="presentation/assets/background/outlier.jpg" data-background-opacity="0.2">
+					<h3>Outliers</h3>
+					
+					<p>Plotting a trend and looking for outliers (defined either in a technical sense or in the general sense of "well outside the norm") can dig up strange behavior. Real data sets will always have outliers, though, so the existence of outliers is not in itself suspicious.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/clusters.jpg" data-background-opacity="0.2">
+					<h3>Clustering Behavior</h3>
+					
+					<p>Something interesting when analyzing a cohort is to look for clustering around certain values. Examples: expense reports and invoices.</p>
+
+					<p>Going back to our Wake County example, there was a cluster around $2500, as that was the cutoff point after which a second person needed to sign off on a payment order.</p>
+
+					<p>In our example, our cutoff point will be $1000, after which employees need two signatures to complete an invoice.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/demo.jpg" data-background-opacity="0.2">
+					<h3>Demo Time</h3>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li>Know Your Data</li>
+						<li>Basic Analysis</li>
+						<li>Cohort Analysis</li>
+						<li class="active">Time Series Analysis</li>
+						<li>Numeral Analysis</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/time.jpg" data-background-opacity="0.2">
+					<h3>Simple Time Series</h3>
+					
+					<p>The easiest time series analysis is a count of items per day.</p>
+
+					<p>Going back to the Wake County example, auditors could have found something suspicious with the Barnes company pretty easily: there were 24 separate days with at least 50 invoices, certainly a suspicious scenario.</p>
+
+					<p>Other time series examples include the sums of measures by day or month, such as revenue, cost, number of orders, and amounts of refunds.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/balance.jpg" data-background-opacity="0.2">
+					<h3>Balances</h3>
+					
+					<p>For semi-additive measures such as account balances, look at the state of the measure at fixed points in time, such as looking at account balances every day at 9 PM UTC.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/calendar.jpg" data-background-opacity="0.2">
+					<h3>Date Checks</h3>
+					
+					<p>Look for "odd" date combinations: order date later than ship date? Adjustments after a journal closes?</p>
+
+					<p>Look at behavior based on date: focus on day of week, day of month, weekdays vs weekends, mid-week versus early week vs late week. Sum and count measures grouped on these date slices.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/holiday.jpg" data-background-opacity="0.2">
+					<h3>Holidays</h3>
+					
+					<p>Holidays can lead to different behavior like more sales of higher amounts. They can also lead to less activity, like how when invoices are due on a holiday, they may be submitted the next working day.</p>
+
+					<p>Be aware of floating holidays like Easter, as well as observed holidays like Christmas Day observed. It's easiest to store holidays in a date table to avoid trying to calculate these rules on the fly.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li>Know Your Data</li>
+						<li>Basic Analysis</li>
+						<li>Cohort Analysis</li>
+						<li>Time Series Analysis</li>
+						<li class="active">Numeral Analysis</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/polyhedron2.jpg" data-background-opacity="0.2">
+					<h3>Round Numbers</h3>
+					
+					<p>One high-level analysis of values is to get a count of "round numbers." We group into types based on the number of 0s at the end (ignoring cents). Examples:
+						<ul>
+							<li>Type 0:  no trailing zeros (e.g., 17,999)</li>
+							<li>Type 1:  one trailing zero (e.g., 180)</li>
+							<li>Type 2:  two trailing zeros (e.g., 10,200)</li>
+							<li>Type 3:  three or more trailing zeros (e.g., 5,000)</li>
+						</ul>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Benford's Law</h3>
+					
+					<div class="container">
+						<div class="col">
+							<p>Benford's Law is an interesting phenomenon, where the first digit (or two digits, or three digits) of a set of numbers tends to follow a specific pattern.</p>
+						</div>
+						<div class="col">
+							<img src="presentation/assets/image/DigitFrequency.png" />
+						</div>					
+					</div>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/demo.jpg" data-background-opacity="0.2">
+					<h3>Demo Time</h3>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Last Digits</h3>
+					
+					<p>Last digits are assumed uniform unless there is a reason to believe otherwise.</p>
+					
+					<img src="presentation/assets/image/lastdigits.png" />
+				</section>
+
+				<section data-background-image="presentation/assets/background/wrappingup.jpg" data-background-opacity="0.2">
+					<h3>Wrapping Up</h3>
+					
+					<p>This has been a quick survey of forensic accounting and outlier detection techniques. You can apply these techniques to a number of data sets, not only to find potential instances of fraud but also to gain more insight into your data.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Wrapping Up</h3>
+					
+					<p>
+						To learn more, go here:
+						<br />
+						<a href="https://csmore.info/on/forensicpython">https://csmore.info/on/forensicpython</a>
+					</p>
+					<br />
+					<p>
+						And for help, contact me:
+						<br />
+						<a href="mailto:feasel@catallaxyservices.com">feasel@catallaxyservices.com</a> | <a href="https://www.twitter.com/feaselkl">@feaselkl</a>
+					</p>
+					<br />
+					<p>
+						Catallaxy Services consulting:
+						<br />
+						<a href="https://csmore.info/contact">https://CSmore.info/on/contact</a>
+					</p>
+				</section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/dist/reveal.js"></script>
+		<script src="../reveal.js/plugin/zoom/zoom.js"></script>
+		<script src="../reveal.js/plugin/notes/notes.js"></script>
+		<script src="../reveal.js/plugin/search/search.js"></script>
+		<script src="../reveal.js/plugin/markdown/markdown.js"></script>
+		<script src="../reveal.js/plugin/math/math.js"></script>
+		<script src="../reveal.js/plugin/menu/menu.js"></script>
+		<script src="../reveal.js/plugin/highlight/highlight.js"></script>
+		<script src="../reveal.js/plugin/chart/Chart.min.js"></script>
+		<script src="../reveal.js/plugin/chart/plugin.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				width: '70%',
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+				transition: 'fade',
+				
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMath, RevealMenu, RevealChart ]
+			});
+		</script>
+	</body>
+</html>
