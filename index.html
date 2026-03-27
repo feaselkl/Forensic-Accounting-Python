@@ -21,7 +21,7 @@
 					<h2>Applying Forensic Accounting Techniques</h2>
 					<h2>Using SQL And Python</h2>
 					
-					<a href="https://www.catallaxyservices.com">Kevin Feasel</a> (<a href="https://twitter.com/feaselkl">@feaselkl</a>)<br />
+					<a href="https://www.catallaxyservices.com">Kevin Feasel</a> (<a href="https://www.x.com/feaselkl">@feaselkl</a>)<br />
 					<a href="https://csmore.info/on/forensicpython">https://csmore.info/on/forensicpython</a>
 				</section>
 				
@@ -45,9 +45,9 @@
 							</table>
 						</div>
 						<div class="col">
-							<a href="http://www.twitter.com/feaselkl"><img src="../WebsiteAssets/HeadShot.jpg" height="358" width="315" /></a>
+							<a href="https://www.x.com/feaselkl"><img src="../WebsiteAssets/HeadShot.jpg" height="358" width="315" /></a>
 							<br />
-							<a href="http://www.twitter.com/feaselkl">@feaselkl</a>
+							<a href="https://www.x.com/feaselkl">@feaselkl</a>
 						</div>					
 					</div>
 				</section>
@@ -123,12 +123,11 @@
 				
 				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
 					<h3>Agenda</h3>
-					
+
 					<ol>
 						<li class="active">Know Your Data</li>
 						<li>Basic Analysis</li>
 						<li>Cohort Analysis</li>
-						<li>Time Series Analysis</li>
 						<li>Numeral Analysis</li>
 					</ol>
 				</section>
@@ -160,7 +159,6 @@
 						<li>Know Your Data</li>
 						<li class="active">Basic Analysis</li>
 						<li>Cohort Analysis</li>
-						<li>Time Series Analysis</li>
 						<li>Numeral Analysis</li>
 					</ol>
 				</section>
@@ -173,7 +171,6 @@
 					<ul>
 						<li>Summary Analysis</li>
 						<li>Growth Analysis</li>
-						<li>Gaps in Data</li>
 						<li>Regression Analysis</li>
 					</ul>
 				</section>
@@ -246,32 +243,14 @@
 					<h3>Demo Time</h3>
 				</section>
 				
-				<section data-background-image="presentation/assets/background/sinkhole.jpg" data-background-opacity="0.2">
-					<h3>Gap Analysis</h3>
-					
-					<p>Sometimes, it's the <strong>lack</strong> of a value which is interesting. We want to look for sequences which should be complete but aren't--examples include receipts, purchase orders, check numbers, invoice numbers, etc.</p>
-
-					<p>There are several T-SQL constructs which can help us find missing values, including the Gaps and Islands solutions and using a tally table.</p>
-				</section>
-				
-				<section data-background-image="presentation/assets/background/demo.jpg" data-background-opacity="0.2">
-					<h3>Demo Time</h3>
-				</section>
-				
-				<section data-background-image="presentation/assets/background/surfer-crash.jpg" data-background-opacity="0.2">
-					<h3>Gap Analysis</h3>
-					
-					<p><strong>Warning:</strong> if you generate invoice numbers (for example) using a SQL Server identity integer, gaps may occur when transactions get rolled back. It may be better to use a surrogate key for storage but generate an invoice number only after the new transaction saves successfully.</p>
-				</section>
-				
 				<section data-background-image="presentation/assets/background/notebook.jpg" data-background-opacity="0.2">
 					<h3>Regression Analysis</h3>
 					
 					<p>What we have:</p>
 					
 					<ul>
-						<li>A dependent variable:  the thing whose behavior we want to explain.</li>
-						<li>Independent variables:  the things whose behavior explains the dependent variable.</li>
+						<li>A dependent variable: the thing whose behavior we want to explain.</li>
+						<li>Independent variables: the things whose behavior explains the dependent variable.</li>
 						<li>Known data points relating our independent variable(s) to our dependent variable.</li>
 					</ul>
 					
@@ -293,7 +272,6 @@
 						<li>Know Your Data</li>
 						<li>Basic Analysis</li>
 						<li class="active">Cohort Analysis</li>
-						<li>Time Series Analysis</li>
 						<li>Numeral Analysis</li>
 					</ol>
 				</section>
@@ -372,56 +350,11 @@
 				
 				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
 					<h3>Agenda</h3>
-					
+
 					<ol>
 						<li>Know Your Data</li>
 						<li>Basic Analysis</li>
 						<li>Cohort Analysis</li>
-						<li class="active">Time Series Analysis</li>
-						<li>Numeral Analysis</li>
-					</ol>
-				</section>
-				
-				<section data-background-image="presentation/assets/background/time.jpg" data-background-opacity="0.2">
-					<h3>Simple Time Series</h3>
-					
-					<p>The easiest time series analysis is a count of items per day.</p>
-
-					<p>Going back to the Wake County example, auditors could have found something suspicious with the Barnes company pretty easily: there were 24 separate days with at least 50 invoices, certainly a suspicious scenario.</p>
-
-					<p>Other time series examples include the sums of measures by day or month, such as revenue, cost, number of orders, and amounts of refunds.</p>
-				</section>
-				
-				<section data-background-image="presentation/assets/background/balance.jpg" data-background-opacity="0.2">
-					<h3>Balances</h3>
-					
-					<p>For semi-additive measures such as account balances, look at the state of the measure at fixed points in time, such as looking at account balances every day at 9 PM UTC.</p>
-				</section>
-				
-				<section data-background-image="presentation/assets/background/calendar.jpg" data-background-opacity="0.2">
-					<h3>Date Checks</h3>
-					
-					<p>Look for "odd" date combinations: order date later than ship date? Adjustments after a journal closes?</p>
-
-					<p>Look at behavior based on date: focus on day of week, day of month, weekdays vs weekends, mid-week versus early week vs late week. Sum and count measures grouped on these date slices.</p>
-				</section>
-				
-				<section data-background-image="presentation/assets/background/holiday.jpg" data-background-opacity="0.2">
-					<h3>Holidays</h3>
-					
-					<p>Holidays can lead to different behavior like more sales of higher amounts. They can also lead to less activity, like how when invoices are due on a holiday, they may be submitted the next working day.</p>
-
-					<p>Be aware of floating holidays like Easter, as well as observed holidays like Christmas Day observed. It's easiest to store holidays in a date table to avoid trying to calculate these rules on the fly.</p>
-				</section>
-				
-				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
-					<h3>Agenda</h3>
-					
-					<ol>
-						<li>Know Your Data</li>
-						<li>Basic Analysis</li>
-						<li>Cohort Analysis</li>
-						<li>Time Series Analysis</li>
 						<li class="active">Numeral Analysis</li>
 					</ol>
 				</section>
@@ -465,10 +398,22 @@
 
 				<section data-background-image="presentation/assets/background/wrappingup.jpg" data-background-opacity="0.2">
 					<h3>Wrapping Up</h3>
-					
-					<p>This has been a quick survey of forensic accounting and outlier detection techniques. You can apply these techniques to a number of data sets, not only to find potential instances of fraud but also to gain more insight into your data.</p>
+
+					<p>These techniques are not just for catching fraud. They help you build a deeper understanding of your data and catch problems before they become expensive.</p>
 				</section>
-				
+
+				<section data-background-image="presentation/assets/background/wrappingup.jpg" data-background-opacity="0.2">
+					<h3>What To Do Monday</h3>
+
+					<ol>
+						<li>Run row counts and review keys on your most important tables.</li>
+						<li>Plot year-over-year trends for key measures and look for unexplained spikes.</li>
+						<li>Check for clustering near approval thresholds (expense limits, sign-off cutoffs).</li>
+						<li>Compare cohort behavior: does one vendor, employee, or category look different from the rest?</li>
+						<li>Run Benford's Law against a financial data set and see what stands out.</li>
+					</ol>
+				</section>
+
 				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
 					<h3>Wrapping Up</h3>
 					
@@ -481,7 +426,7 @@
 					<p>
 						And for help, contact me:
 						<br />
-						<a href="mailto:feasel@catallaxyservices.com">feasel@catallaxyservices.com</a> | <a href="https://www.twitter.com/feaselkl">@feaselkl</a>
+						<a href="mailto:feasel@catallaxyservices.com">feasel@catallaxyservices.com</a> | <a href="https://www.x.com/feaselkl">@feaselkl</a>
 					</p>
 					<br />
 					<p>

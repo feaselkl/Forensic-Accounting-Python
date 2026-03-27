@@ -1,7 +1,7 @@
 USE [master]
 GO
-IF (DB_ID('ForensicAccountingPython') IS NULL)
-    CREATE DATABASE ForensicAccountingPython;
+IF (DB_ID('ForensicAccounting') IS NULL)
+    CREATE DATABASE ForensicAccounting;
 GO
 SET ANSI_NULLS ON
 GO
@@ -9,7 +9,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET NOCOUNT ON
 GO
-USE [ForensicAccountingPython]
+USE [ForensicAccounting]
 GO
 CREATE TABLE [dbo].[Calendar]
 (
@@ -54,14 +54,5 @@ ALTER TABLE [dbo].[Calendar] ADD  CONSTRAINT [PK_Calendar] PRIMARY KEY CLUSTERED
 	[DateKey] ASC
 );
 GO
-CREATE EXTERNAL DATA SOURCE FA_External
-WITH
-(
-    TYPE = BLOB_STORAGE,
-    LOCATION = 'https://cspolybasepublic.blob.core.windows.net'
-);
-GO
-BULK INSERT dbo.Calendar FROM 'sqlontheedgepublicdata/Windows_CalendarTable.csv' WITH(DATA_SOURCE = 'FA_External', FORMAT = 'CSV', FIRSTROW = 2);
-GO
-DROP EXTERNAL DATA SOURCE FA_External;
+BULK INSERT dbo.Calendar FROM '/var/opt/mssql/scripts/CalendarData.csv' WITH(FORMAT = 'CSV', FIRSTROW = 2);
 GO

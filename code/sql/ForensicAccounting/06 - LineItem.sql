@@ -1,4 +1,4 @@
-USE [ForensicAccountingPython]
+USE [ForensicAccounting]
 GO
 CREATE TABLE dbo.LineItem
 (
