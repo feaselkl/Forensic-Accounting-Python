@@ -36,7 +36,7 @@ If you receive an error removing containers, AppArmor might be blocking the cont
 
 ```bash
 sudo aa-remove-unknown
-sudo docker copose down
+sudo docker compose down
 ```
 
 ## Local Setup
